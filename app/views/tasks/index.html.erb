@@ -3,34 +3,39 @@
 
   <% content_for :title, "Tasks" %> 
 
-  <h1>Tasks</h1> <%= link_to "New task", new_task_path %>
-  <span class="material-icons" style="color: blue; font-size: 32px;">add_task</span>
-
+  <div class="tasks-title">
+    <h1>Tasks</h1> 
+    <%= link_to new_task_path do %>
+      <span class="material-icons">add_task</span>
+    <% end %>
+  </div>
 
   
   <div id="tasks">
     <% @tasks.each do |task| %>
-    
-      <div id="<%= dom_id task %>" class="task-container"> <!-- used in show.html.erb -->
-        <p>
-          <strong>Description:</strong>
-          <%= task.description %>
-        </p>
+      
+      <div id="<%= dom_id task %>" class="task-container"> 
+      
+        <div class="tasks-description">
+          <%= check_box_tag "task[completed][#{task.id}]", "true", task.completed, disabled: false %>
+          <p>
+            <%= link_to task.description, task %>
+          </p>
+        </div>
 
-        <p>
-          <strong>Due date:</strong>
-          <%= task.due_date %>
-        </p>
+        <div class="tasks-due-date">
+          <span class="material-symbols-outlined calendar_today">
+            calendar_today
+          </span>
+          <span class="due-date">
+            <%= task.due_date %>
+          </span>
+        </div>
 
-        <p>
-          <strong>Completed:</strong>
-          <%= task.completed %>
-        </p>
-
-        <p>
+        <div class="tasks-category">
           <strong>Category:</strong>
           <%= task.category.name %>
-        </p>
+        </div>
       </div>
         
       <!-- <p>

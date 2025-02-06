@@ -1,40 +1,39 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    
+      @tasks = Task.all
+    
   end
 
-  def show
-  end
+  # def show
+  #   @task = Task.find(params[:id])
+  # end
 
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice: "Task deleted successfully."
+  end
   def new
-    @task = Task.new
+    @task = Task.new  
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @category.tasks.build(task_params)
     if @task.save
-      redirect_to @task, notice: "Task was successfully created."
+      redirect_to category_tasks_path(@category), notice: 'Task created successfully.'
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: "Task was successfully updated."
+      redirect_to tasks_path, notice: "Task updated successfully."
     else
-      render :edit
+      render :index
     end
-  end
-
-  def destroy
-    @task.destroy
-    redirect_to tasks_path, notice: "Task was successfully destroyed."
   end
 
   private
@@ -44,6 +43,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :due_date, :completed, :category_id)
+    params.require(:task).permit(:description, :due_date, :completed)
   end
 end

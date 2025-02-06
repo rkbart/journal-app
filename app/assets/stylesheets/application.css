@@ -1,18 +1,109 @@
 @import "material-icons/iconfont/material-icons.css";
-
-.tasks-index {
-   background-color: rgb(142, 151, 255);
-   padding: 0 2rem;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.tasks-index h1 {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(142, 151, 255);
+  }
+  
+.tasks-index {
+   background-color: rgb(142, 151, 255);
+   padding: 1rem 2rem;
+   /* border-radius: 10px; */
+   /* height: 100vh ; */
+}
+
+.tasks-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5em;
+}
+.tasks-title h1 {
     color: white;
-    /* margin-top: 3rem; */
+    user-select: none;
+}
+
+.tasks-title span {
+    color: white;
+    font-size: 24px;
+    margin-top: 5px;
+    user-select: none;
 }
 
 .task-container {
     background-color: rgb(230, 232, 255);
-    padding: .5rem;
+    padding: 1rem;
     border-radius: 10px;
-    margin: 0 1rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: flex-start; 
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+}
+
+.task-container:hover {
+    background-color: hsla(235, 100%, 95%, 0.9);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.4); 
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.tasks-description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5em;
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.tasks-description p {
+    color: black;
+    user-select: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tasks-description a {
+    color: black;
+    text-decoration: none;
+}
+
+.tasks-description a:hover {
+    color: hsla(0, 0%, 0%, 0.65);
+    text-decoration: none;
+}
+
+.tasks-due-date {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+    margin-left: 1rem;
+}
+
+.calendar_today {
+    color: gray;
+    user-select: none;
+    font-size: 16px;
+}
+.due-date {
+    margin-top: 2px;    
+    user-select: none;
+    font-size: 14px;
+}
+
+.tasks-category {
+    margin-left: 18px;    
+    user-select: none;
 }
