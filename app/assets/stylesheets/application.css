@@ -1,10 +1,18 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import "material-icons/iconfont/material-icons.css";
+
+.tasks-index {
+   background-color: rgb(142, 151, 255);
+   padding: 0 2rem;
+}
+
+.tasks-index h1 {
+    color: white;
+    /* margin-top: 3rem; */
+}
+
+.task-container {
+    background-color: rgb(230, 232, 255);
+    padding: .5rem;
+    border-radius: 10px;
+    margin: 0 1rem;
+}

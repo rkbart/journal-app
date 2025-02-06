@@ -1,9 +1,5 @@
-<div id="<%= dom_id task %>">
-  <p>
-    <strong>Title:</strong>
-    <%= task.title %>
-  </p>
-
+<div id="<%= dom_id task %>" class="task-container"> <!-- used in show.html.erb -->
+ 
   <p>
     <strong>Description:</strong>
     <%= task.description %>
@@ -21,7 +17,7 @@
 
   <p>
     <strong>Category:</strong>
-    <%= task.category_id %>
+    <%= task.category.name %>
   </p>
 
 </div>

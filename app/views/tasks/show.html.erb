@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class = "tasks-index">
+  <p style="color: green"><%= notice %></p>
 
-<%= render @task %>
+  <%= render @task %> <!-- _task.html.erb -->
 
-<div>
-  <%= link_to "Edit this task", edit_task_path(@task) %> |
-  <%= link_to "Back to tasks", tasks_path %>
+  <div>
+    <%= link_to "Edit this task", edit_task_path(@task) %> |
+    <%= link_to "Back to tasks", tasks_path %>
 
-  <%= button_to "Destroy this task", @task, method: :delete %>
+    <%= button_to "Destroy this task", @task, method: :delete %>
+  </div>
+
 </div>
