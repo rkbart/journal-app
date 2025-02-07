@@ -1,5 +1,5 @@
 <div class="categories-index">
-  <p style="color: green"><%= notice %></p>
+  <p style="color: black; font-style: italic;"><%= notice %></p>
 
   <% content_for :title, "Categories" %>
 
@@ -9,11 +9,14 @@
   </div>
 
   <div id="categories">
-    
+    <div class="category-container">
+      <span>
+        <%= link_to "Display all tasks", all_tasks_categories_path %>
+      </span>        
+    </div>
     <% @categories.each do |category| %>
       <div class="category-container">
         <span>
-          <!--<%= category.name %>-->
           <%= link_to category.name, category_tasks_path(category) %> 
           <%= link_to edit_category_path(category) do %>
             <i class="fa-solid fa-pen-to-square"></i>

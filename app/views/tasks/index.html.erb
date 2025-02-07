@@ -1,12 +1,12 @@
 <div class = "tasks-index">
-  <p style="color: black, font-style: italic;"><%= notice %></p>
+  <p style="color: black; font-style: italic;"><%= notice %></p>
 
   <% content_for :title, "Tasks" %> 
 
   <div class="tasks-title">
     <i class="fa-solid fa-list-check"></i>
     
-    <h1>Tasks</h1> 
+    <h1><%= @category.name %></h1> 
     <%= link_to new_category_task_path(@category) do %>
       <span class="material-icons">add_task</span>
     <% end %>
@@ -34,10 +34,10 @@
           </span>
         </div>
 
-        <div class="tasks-category">
+        <!--<div class="tasks-category">
           <strong>Category:</strong>
           <%= task.category.name %>
-        </div>
+        </div> -->
       </div>
     <% end %>
     

@@ -44,6 +44,10 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: 'Category deleted successfully.'
   end
 
+  def all_tasks
+    @tasks = Task.all # Fetch all tasks from all categories
+  end
+  
   private
   def category_params
     params.require(:category).permit(:name) # Correct syntax for strong params

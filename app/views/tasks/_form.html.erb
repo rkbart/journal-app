@@ -1,6 +1,5 @@
-<!-- used in new.html.erb -->
+<%= form_with(model: task, html: { class: "task-form" }, url: task.persisted? ? category_task_path(@category, task) : category_tasks_path(@category), method: task.persisted? ? :patch : :post, local: true) do |form| %>
 
-<%= form_with(model: task, url: category_tasks_path(@category), local: true, html: { class: "task-form" }) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -13,22 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label "task" %>
+    <%= form.label @category.name %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
     <%= form.label :due_date %>
-    <%= form.date_field :due_date, class: "date-picker", start_year: 2025, end_year: 2030 %>
-
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a category" %>  <!-- Category selection -->
+    <%= form.date_field :due_date, value: Date.today, class: "date-picker", start_year: 2025, end_year: 2030 %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save Task" %>
+
+    <% if task.persisted? %> <!-- Only show delete button if editing -->
+      <%= button_to "Delete Task", 
+            category_task_path(@category, task),
+            method: :delete, 
+            data: { confirm: "Are you sure you want to delete this task?" }, 
+            class: "delete-button" %>
+    <% end %>
   </div>
 <% end %>

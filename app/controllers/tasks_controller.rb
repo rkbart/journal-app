@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 
   def new
     @category = Category.find(params[:category_id])
-    @task = @category.tasks.new  # Ensure new task is scoped to a category
+    @task = @category.tasks.new(due_date: Date.today)  # Ensure new task is scoped to a category
   end
 
   def create
@@ -18,7 +18,16 @@ class TasksController < ApplicationController
       render :new
     end
   end
+  def edit
+    @task = Task.find(params[:id])
+  end
 
+  def destroy
+    @task = @category.tasks.find(params[:id]) # Find task by ID under the category
+    @task.destroy
+    redirect_to category_tasks_path(@category), notice: 'Task deleted successfully.'
+  end
+  
   private
 
   def set_category

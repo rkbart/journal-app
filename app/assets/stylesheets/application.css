@@ -184,7 +184,7 @@ input[type="checkbox"] {
     margin-top: 1rem;
 }
 
-.task-form .actions input[type="submit"] {
+.task-form .actions input[type="submit"], .delete-button {
     background-color: #6a73ff;
     color: white;
     padding: 0.8rem 1.5rem;
@@ -256,6 +256,12 @@ input[type="checkbox"] {
 
 .new-task h1, .edit-task h1 {
     text-align: center;
+    color: white;
+}
+
+.new-task p, .edit-task p {
+    text-align: center;
+    font-style: italic;
 }
 
 .back-to-categories-button {
