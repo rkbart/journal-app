@@ -1,45 +1,28 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_category  # Ensure the category is set before running index
 
   def index
-    
-      @tasks = Task.all
-    
+    @tasks = @category.tasks # Fetch tasks only for the selected category
   end
 
-  # def show
-  #   @task = Task.find(params[:id])
-  # end
-
-  def destroy
-    @task.destroy
-    redirect_to tasks_path, notice: "Task deleted successfully."
-  end
   def new
-    @task = Task.new  
+    @category = Category.find(params[:category_id])
+    @task = @category.tasks.new  # Ensure new task is scoped to a category
   end
 
   def create
-    @task = @category.tasks.build(task_params)
+    @task = @category.tasks.build(task_params) # Associate task with category
     if @task.save
-      redirect_to task, notice: 'Task created successfully.'
+      redirect_to category_tasks_path(@category), notice: 'Task created successfully.'
     else
       render :new
     end
   end
 
-  def update
-    if @task.update(task_params)
-      redirect_to tasks_path, notice: "Task updated successfully."
-    else
-      render :index
-    end
-  end
-
   private
 
-  def set_task
-    @task = Task.find(params[:id])
+  def set_category
+    @category = Category.find(params[:category_id])  # Ensure category exists
   end
 
   def task_params

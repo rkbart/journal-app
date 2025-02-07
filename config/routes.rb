@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  # root 'tasks#index'
+  
+  resources :categories do
+    resources :tasks, only: [:index, :new, :create, :edit, :update]
+  end
 
-  resources :categories 
-    resources :tasks
-  
-  get '/signup', to: 'users#new', as: 'signup'
-  
+  root 'categories#index'
 end
