@@ -17,6 +17,11 @@ body {
    /* height: 100vh ; */
 }
 
+.fa-solid {
+    font-size: 24px;
+    color: white
+}
+
 .tasks-title {
     display: flex;
     justify-content: flex-start;
@@ -33,6 +38,13 @@ body {
     font-size: 24px;
     margin-top: 5px;
     user-select: none;
+}
+
+.tasks-title span:hover {
+    cursor: pointer;
+    /* transform: scale(.95); */
+    color: rgb(235, 235, 235);
+    transition: ease-in-out 0.2s;
 }
 
 .task-container {
@@ -106,4 +118,137 @@ input[type="checkbox"] {
 .tasks-category {
     margin-left: 18px;    
     user-select: none;
+}
+
+/* Form-specific styling based on the existing theme */
+
+.task-form {
+    background-color: rgb(230, 232, 255);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-form .field {
+    margin-bottom: 1.2rem;
+}
+
+.task-form .field label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.4rem;
+}
+
+.task-form .field input[type="text"],
+.task-form .field textarea,
+.task-form .field select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+.task-form .field input[type="text"]:focus,
+.task-form .field textarea:focus,
+.task-form .field select:focus {
+    border-color: #6a73ff;
+    outline: none;
+}
+
+.task-form .field textarea {
+    height: 120px;
+    resize: none;
+}
+
+.task-form .field input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+.task-form .actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.task-form .actions input[type="submit"] {
+    background-color: #6a73ff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-form .actions input[type="submit"]:hover {
+    background-color: #575bb5;
+}
+
+/* Error message styling */
+#error_explanation {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+#error_explanation h2 {
+    margin-bottom: 0.5rem;
+}
+
+#error_explanation ul {
+    list-style-type: none;
+    padding-left: 1.5rem;
+}
+
+#error_explanation ul li {
+    font-size: 14px;
+}
+
+/* Add a small margin to each form input field */
+.field input[type="text"], .field textarea, .field select {
+    margin-top: 0.5rem;
+}
+
+/* Date input styling */
+.date-picker {
+    padding: 10px;
+    border: 2px solid #4a4e69;  /* Dark blue-gray border */
+    border-radius: 5px;
+    font-size: 16px;
+    color: #222;
+    background-color: #f8f9fa; /* Light gray background */
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Date input on hover */
+.date-picker:hover {
+    border-color: #22223b; /* Darker blue-gray */
+}
+
+/* Date input on focus (when clicked) */
+.date-picker:focus {
+    outline: none;
+    border-color: #5a5f85; 
+    box-shadow: 0 0 5px rgba(90, 95, 133, 0.5);
+}
+
+/* New task & Edit task styling (tasks/new.html.erb & tasks/edit.html.erb) */
+.new-task, .edit-task {
+    padding: 1rem
+}
+
+.new-task h1, .edit-task h1 {
+    text-align: center;
 }

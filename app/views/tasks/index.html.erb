@@ -4,6 +4,7 @@
   <% content_for :title, "Tasks" %> 
 
   <div class="tasks-title">
+    <i class="fa-solid fa-list-check"></i>
     <h1>Tasks</h1> 
     <%= link_to new_task_path do %>
       <span class="material-icons">add_task</span>
@@ -19,7 +20,7 @@
         <div class="tasks-description">
           <%= check_box_tag "task[completed][#{task.id}]", "true", task.completed, disabled: false %>
           <p>
-            <%= link_to task.description, task %>
+            <%= link_to task.description, edit_task_path(task) %>
           </p>
         </div>
 

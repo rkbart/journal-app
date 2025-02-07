@@ -1,6 +1,6 @@
 <!-- used in new.html.erb -->
 
-<%= form_with(model: task, local: true) do |form| %>
+<%= form_with(model: task, local: true, html: { class: "task-form" }) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -13,23 +13,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
+    <%= form.label "task" %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
     <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
-  </div>
+    <%= form.date_field :due_date, class: "date-picker", start_year: 2025, end_year: 2030 %>
 
-  <div class="field">
-    <%= form.label :completed %>
-    <%= form.check_box :completed %>
   </div>
 
   <div class="field">

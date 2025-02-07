@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :categories 
     resources :tasks
   
-
+  get '/signup', to: 'users#new', as: 'signup'
   
 end
