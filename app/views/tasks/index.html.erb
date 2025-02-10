@@ -10,6 +10,9 @@
     <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
       <span class="material-icons">add_task</span>
     <% end %>
+    <%= link_to categories_path, title: "Back to Categories" do %>  
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
   </div>
 
   
@@ -43,8 +46,5 @@
     
   </div>
   
-  <div class="back-to-categories-button">
-    <%= link_to "Back to Categories", categories_path %>
-  </div> 
-  
+    
 </div>

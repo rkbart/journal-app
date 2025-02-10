@@ -25,13 +25,13 @@
     <%= form.submit "Save Task" %>
 
     <div class="clear">
-    <% if task.persisted? %> <!-- Only show delete button if editing -->
-      <%= button_to "Delete Task", 
-            category_task_path(@category, task),
-            method: :delete, 
-            data: { confirm: "Are you sure you want to delete this task?" }, 
-            class: "delete-button" %>
-    <% end %>
+      <% if task.persisted? %> <!-- Only show delete button if editing -->
+        <%= button_to "Delete Task", 
+              category_task_path(@category, task),
+              method: :delete, 
+              data: { confirm: "Are you sure you want to delete this task?" }, 
+              class: "delete-button" %>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -1,4 +1,4 @@
-<%= form_with(model: category) do |form| %>
+<%= form_with(model: category,html: { class: "task-form" }) do |form| %>
   <% if category.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
@@ -11,12 +11,20 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div class="actions">
     <%= form.submit %>
+
+    <% if category.persisted? %> 
+        <%= button_to "Delete Category", 
+              category,
+              method: :delete, 
+              data: { confirm: "Are you sure you want to delete this category?" }, 
+              class: "delete-button" %>
+      <% end %>
   </div>
 <% end %>

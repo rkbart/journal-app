@@ -5,7 +5,14 @@
 
   <div class="categories-title">
     <i class="fa-solid fa-icons"></i>
+    
     <h1>Categories</h1>
+    
+    <div class="new-category-button">
+      <%= link_to new_category_path, title: "Add new category" do %>
+        <i class="fa-solid fa-square-plus"></i>
+      <% end %>
+    </div>
   </div>
 
   <div id="categories">
@@ -18,19 +25,18 @@
       <div class="category-container">
         <span>
           <%= link_to category.name, category_tasks_path(category) %> 
-          <%= link_to edit_category_path(category) do %>
+          <%= link_to edit_category_path(category), title: "Edit this category" do %>
             <i class="fa-solid fa-pen-to-square"></i>
           <% end %>
-        </span>
+          <span class="task-count" title="Number of tasks in this category">
+          (<span style="color: red;"><%= category.tasks.count %></span>)
+          </span>
+         </span>
       </div>
     <% end %>
 
   </div>
   
-  <div class="new-category-button">
-    <%= link_to new_category_path do %>
-      <i class="fa-solid fa-square-plus"></i>
-    <% end %>
-  </div>
-  <!-- <%= link_to "New category", new_category_path %> -->
+ 
+ 
 </div>

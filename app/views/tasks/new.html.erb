@@ -1,12 +1,15 @@
 <% content_for :title, "New task" %>
 <div class = "new-task">
-  <h1>New Task in <%= @category.name %></h1>
+<span class="edit-task-title">  
+<h1>New Task in <%= @category.name %></h1>
+  <%= link_to  categories_path, title: "Back to Categories" do %>  
+    <i class="fa-solid fa-arrow-left"></i>
+<% end %>
+</span>
+  
 
   <%= render "form", task: @task %>
 
-  <br>
 
-  <p>
-    <%= link_to "Back to Categories", categories_path %>
-  </p> 
+  
 </div>

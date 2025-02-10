@@ -1,6 +1,14 @@
 <div class="all-tasks">
-    <h1>All Tasks</h1>
-
+    <div class="tasks-title">
+        <i class="fa-solid fa-list-check"></i>
+    
+        <h1>All Tasks</h1> 
+      
+        <%= link_to categories_path, title: "Back to Categories" do %>  
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+    </div>
+    
     <div id="all-tasks-container">
         <% @tasks.each do |task| %>
             
@@ -31,9 +39,7 @@
 
     </div>
 
-    <div class="back-to-categories-button">
-    <%= link_to "Back to Categories", categories_path %>
-    </div> 
+   
 
 </div>
 

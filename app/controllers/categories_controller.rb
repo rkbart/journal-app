@@ -40,8 +40,24 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 
   def destroy
-    @category.destroy!
-    redirect_to categories_path, notice: 'Category deleted successfully.'
+    category = Category.find(params[:id])
+    default_category = Category.find_by(name: "Uncategorized")
+
+  if default_category.nil?
+    flash[:alert] = "Default category not found. Cannot delete this category."
+    redirect_to categories_path and return
+  end
+
+  # Reassign all tasks to the default category before deleting
+  category.tasks.update_all(category_id: default_category.id)
+
+  if category.destroy
+    flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
+  else
+    flash[:alert] = "Error deleting category."
+  end
+
+  redirect_to categories_path
   end
 
   def all_tasks
