@@ -15,7 +15,7 @@ a {
     text-decoration: none;
 }
   
-.tasks-index {
+.tasks-index, .all-tasks {
    background-color: rgb(142, 151, 255);
    padding: 1rem 2rem;
    /* border-radius: 10px; */
@@ -33,9 +33,10 @@ a {
     align-items: center;
     gap: 0.5em;
 }
-.tasks-title h1 {
+.tasks-title h1, .all-tasks h1 {
     color: white;
     user-select: none;
+    text-align: center;
 }
 
 .tasks-title span {
@@ -52,7 +53,7 @@ a {
     transition: ease-in-out 0.2s;
 }
 
-.task-container, .category-container {
+.task-container, .category-container, .all-tasks-container {
     background-color: rgb(230, 232, 255);
     padding: 1rem;
     border-radius: 10px;
@@ -295,7 +296,7 @@ input[type="checkbox"] {
     text-align: center ;
 }
 
-.category-container {
+.category-container  {
     width: 500px;    
     cursor: pointer;
     user-select: none;
@@ -321,4 +322,20 @@ input[type="checkbox"] {
 
 .fa-square-plus:hover {
     color: hsla(0, 0%, 100%, 0.8);
+}
+
+.all-tasks-container {
+    width: 500px;    
+    cursor: pointer;
+    user-select: none;
+}
+
+.all-tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    width: 100%;
+    margin-bottom: 1rem;
 }

@@ -7,7 +7,7 @@
     <i class="fa-solid fa-list-check"></i>
     
     <h1><%= @category.name %></h1> 
-    <%= link_to new_category_task_path(@category) do %>
+    <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
       <span class="material-icons">add_task</span>
     <% end %>
   </div>
@@ -30,7 +30,7 @@
             calendar_today
           </span>
           <span class="due-date">
-            <%= task.due_date %>
+            <%= content_tag :span, task.due_date, title: "Task is due on #{task.due_date}" %>
           </span>
         </div>
 
