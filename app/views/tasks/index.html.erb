@@ -22,7 +22,7 @@
       <div id="<%= dom_id task %>" class="task-container"> 
       
         <div class="tasks-description">
-          <%= check_box_tag "task[completed][#{task.id}]", "true", task.completed, disabled: false %>
+          
           <p>
             <%= link_to task.description, edit_category_task_path(task.category, task) %>
           </p>

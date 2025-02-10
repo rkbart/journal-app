@@ -31,6 +31,17 @@
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+  <%= yield %>
+
+  <% if session[:user_id] %>
+    <div class="logout-container">
+      <%= button_to logout_path, method: :delete, data: { confirm: "Are you sure you want to log out?" }, class: "logout-button" do %>
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+      <% end %>
+    </div>
+  <% else %>
+   <!-- #nothing dapat -->
+  <% end %>
+</body>
+
 </html>

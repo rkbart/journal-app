@@ -19,6 +19,10 @@
     <div class="category-container">
       <span>
         <%= link_to "Display all tasks", all_tasks_categories_path %>
+        <span class="task-count" title="Total number of tasks">
+          (<span style="color: red;"><%= Task.count %></span>)
+          </span>
+         </span>
       </span>        
     </div>
     <% @categories.each do |category| %>

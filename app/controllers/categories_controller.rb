@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_login
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   # GET /categories 
   def index
@@ -48,20 +49,33 @@ class CategoriesController < ApplicationController
     redirect_to categories_path and return
   end
 
-  # Reassign all tasks to the default category before deleting
-  category.tasks.update_all(category_id: default_category.id)
+  begin
+    # Reassign all tasks to the default category before deleting
+    category.tasks.update_all(category_id: default_category.id)
 
-  if category.destroy
-    flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
-  else
-    flash[:alert] = "Error deleting category."
+    if category.destroy
+      flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
+    else
+      flash[:alert] = "Error deleting category."
+    end
+
+    rescue ActiveRecord::InvalidForeignKey
+      flash[:alert] = "Cannot delete category due to foreign key constraints. Ensure it is not referenced by other records."
+    rescue StandardError => e
+      flash[:alert] = "An error occurred: #{e.message}"
   end
 
-  redirect_to categories_path
+    redirect_to categories_path
   end
 
   def all_tasks
-    @tasks = Task.all # Fetch all tasks from all categories
+    @tasks = Task.all.sort_by do |task|
+      if task.due_date.nil?
+        Date.today + 100.years  # Push tasks without a due date to the bottom
+      else
+        task.due_date
+      end
+    end
   end
   
   private
