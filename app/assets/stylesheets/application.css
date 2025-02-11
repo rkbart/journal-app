@@ -7,7 +7,7 @@
 
 body {
     /* font-family: 'Roboto', sans-serif; */
-    font-family: 'COurier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     background: 
     linear-gradient(white 90%, rgba(0, 0, 0, 0.1) 10%) 0px 0px / 100% 30px, 
     linear-gradient(to right, rgba(255, 0, 0, 0.5) 2px, transparent 2px); 
@@ -509,3 +509,22 @@ input[type="checkbox"] {
     z-index: 1000; 
   }
 
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.7;
+  }
+  
+  .complete-button {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .undo-button {
+    background-color: red;
+  }
+  

@@ -1,25 +1,29 @@
-<div class = "tasks-index">
+<div class="tasks-index">
   <p style="color: black; font-style: italic;"><%= notice %></p>
 
   <% content_for :title, "Tasks" %> 
 
   <div class="tasks-title">
     <i class="fa-solid fa-list-check"></i>
-    
     <h1><%= @category.name %></h1> 
-    
-    
-
   </div>
 
-  
   <div id="tasks">
+  <span class="buttons">
+    <div class="new-category-button">
+      <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+
+    <%= link_to categories_path, title: "Back to Categories" do %>  
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
+  </span>
     <% @tasks.each do |task| %>
-      
-      <div id="<%= dom_id task %>" class="task-container"> 
-      
+      <div id="<%= dom_id task %>" class="task-container <%= 'completed' if task.completed %>"> 
+        
         <div class="tasks-description">
-          
           <p>
             <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
           </p>
@@ -34,24 +38,16 @@
           </span>
         </div>
 
-        <!--<div class="tasks-category">
-          <strong>Category:</strong>
-          <%= task.category.name %>
-        </div> -->
+        <!-- Toggle Complete Button -->
+        <div class="task-status">
+          <%= button_to (task.completed ? "Undo" : "Mark as Done"), 
+              toggle_complete_category_task_path(@category, task),
+              method: :patch, class: "complete-button #{'undo-button' if task.completed}" %>
+        </div>
+        
       </div>
     <% end %>
-    
   </div>
-  <span class ="buttons">
-      <div class="new-category-button">
-        <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
-          <i class="fa-solid fa-plus"></i>
-        <% end %>
-      </div>
-      
-      <%= link_to categories_path, title: "Back to Categories" do %>  
-        <i class="fa-solid fa-arrow-left"></i>
-      <% end %>
-    </span>
-    
+
+  
 </div>

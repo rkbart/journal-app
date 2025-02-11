@@ -28,6 +28,21 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to category_tasks_path(@category), notice: 'Task deleted successfully.'
   end
+
+  def update
+    @task = @category.tasks.find(params[:id]) # Find the task within the category
+    if @task.update(task_params) # Attempt to update the task
+      redirect_to category_tasks_path(@category), notice: 'Task updated successfully.'
+    else
+      render :edit # Re-render the edit form if update fails
+    end
+  end
+  
+  def toggle_complete
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed) # Toggle the completed status
+    redirect_to category_tasks_path(@task.category), notice: "Task updated successfully."
+  end
   
   private
 
@@ -36,6 +51,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:description, :due_date, :completed)
+    params.require(:task).permit(:description, :due_date, :completed, :category_id)
   end
 end

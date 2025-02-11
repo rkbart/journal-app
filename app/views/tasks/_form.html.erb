@@ -21,6 +21,12 @@
     <%= form.date_field :due_date, value: Date.today, class: "date-picker", start_year: 2025, end_year: 2030 %>
   </div>
 
+  <div class="field">
+    <%= form.label :category_id, "Select Category" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { selected: task.category_id, prompt: "Select a Category" }, class: "category-dropdown" %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit "Save Task" %>
 
