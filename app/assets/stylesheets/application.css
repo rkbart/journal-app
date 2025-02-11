@@ -528,3 +528,6 @@ input[type="checkbox"] {
     background-color: red;
   }
   
+  .upcoming-title {
+    margin-top: 1rem;
+  }

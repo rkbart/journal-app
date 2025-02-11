@@ -26,6 +26,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: 'Category created successfully.'
     else
+      flash[:alert] = @category.errors.full_messages.join(", ")  # Make errors visible
       render :new
     end
   end

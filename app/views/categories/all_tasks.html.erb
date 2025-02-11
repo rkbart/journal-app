@@ -61,7 +61,7 @@
         <% end %>
 
         <!-- Upcoming Section -->
-        <h2>Upcoming</h2>
+        <h2 class="upcoming-title">Upcoming</h2>
         <% upcoming_tasks = @tasks.select { |task| task.due_date && task.due_date > Date.today } %>
         <% if upcoming_tasks.any? %>
             <% upcoming_tasks.each do |task| %>

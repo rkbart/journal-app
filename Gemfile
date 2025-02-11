@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "react-rails", "~> 3.2"
+
+gem "rspec-rails", "~> 7.1", :groups => [:development, :test]
