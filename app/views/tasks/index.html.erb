@@ -7,12 +7,9 @@
     <i class="fa-solid fa-list-check"></i>
     
     <h1><%= @category.name %></h1> 
-    <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
-      <span class="material-icons">add_task</span>
-    <% end %>
-    <%= link_to categories_path, title: "Back to Categories" do %>  
-      <i class="fa-solid fa-arrow-left"></i>
-    <% end %>
+    
+    
+
   </div>
 
   
@@ -24,7 +21,7 @@
         <div class="tasks-description">
           
           <p>
-            <%= link_to task.description, edit_category_task_path(task.category, task) %>
+            <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
           </p>
         </div>
 
@@ -45,6 +42,16 @@
     <% end %>
     
   </div>
-  
+  <span class ="buttons">
+      <div class="new-category-button">
+        <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+      </div>
+      
+      <%= link_to categories_path, title: "Back to Categories" do %>  
+        <i class="fa-solid fa-arrow-left"></i>
+      <% end %>
+    </span>
     
 </div>

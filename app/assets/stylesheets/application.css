@@ -31,10 +31,12 @@ a {
 .tasks-index p {
     text-align: center;
 }
-
-.fa-list-check, .fa-icons, .fa-square-plus {
+.material-icons{
+    color: #c0392b;
+}
+.fa-list-check, .fa-icons {
     font-size: 24px;
-    color: black;
+    color: #c0392b;
 }
 
 .tasks-title {
@@ -45,7 +47,7 @@ a {
     margin-top: 2rem;
 }
 .tasks-title h1, .all-tasks h1 {
-    color: black;
+    color: #c0392b;
     user-select: none;
     text-align: center;
    
@@ -56,14 +58,6 @@ a {
     font-size: 24px;
     margin-top: 5px;
     user-select: none;
-}
-
-.fa-arrow-left {
-    color: black;
-    font-size: 20px;
-    /* margin-top: 5px; */
-    user-select: none;
-    cursor: pointer;
 }
 
 .tasks-title span:hover {
@@ -218,7 +212,7 @@ input[type="checkbox"] {
     margin-top: 1rem;
 }
 
-.task-form .actions input[type="submit"], .delete-button {
+.task-form .actions input[type="submit"] {
     background: #c0392b;
     color: white;
     padding: 0.8rem 1.5rem;
@@ -229,7 +223,7 @@ input[type="checkbox"] {
     transition: background-color 0.3s ease;
 }
 
-.task-form .actions input[type="submit"]:hover, .delete-button:hover {
+.task-form .actions input[type="submit"]:hover {
     background: #a93226
 }
 
@@ -285,12 +279,13 @@ input[type="checkbox"] {
 
 /* New task & Edit task styling (tasks/new.html.erb & tasks/edit.html.erb) */
 .new-task, .edit-task, .new-category, .edit-category {
-    padding: 1rem
+    padding: 1rem;
+    margin-top: 1rem;
 }
 
 .new-task h1, .edit-task h1, .new-category h1, .edit-category h1 {
     text-align: center;
-    color: black;
+    color: #c0392b;
 }
 
 .new-task p, .edit-task p, .new-category p, .edit-category p {
@@ -324,7 +319,7 @@ input[type="checkbox"] {
 }
 
 .categories-title h1 {
-    color: black;
+    color: #c0392b;
     user-select: none;
     text-align: center ;
 }
@@ -347,17 +342,13 @@ input[type="checkbox"] {
 }
 
 .fa-pen-to-square {
-    color: black;
+    color: #c0392b;
     font-size: 18px;
     transition: color 0.3s ease;
 }
 
 .fa-pen-to-square:hover {
-    color: hsla(0, 0%, 0%, 0.80);
-}
-
-.fa-square-plus:hover, .fa-arrow-left:hover {
-    color: hsla(0, 0%, 0%, 0.80);
+    color: #a93226;
 }
 
 .all-tasks-container {
@@ -373,6 +364,7 @@ input[type="checkbox"] {
     gap: 0.5em;
     width: 100%;
     margin-bottom: 1rem;
+    color: #c0392b;
 }
 
 .edit-task-title {
@@ -381,6 +373,7 @@ input[type="checkbox"] {
     align-items: center;
     gap: 0.5em;
     width: 100%;
+    color: #c0392b;
 }
 
 .overdue-task .due-date {
@@ -400,25 +393,7 @@ input[type="checkbox"] {
     margin-bottom: 1rem;
 }
 
-.logout-container {
-    display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;      /* Centers vertically */
-    height: 100%;            /* Full height of the viewport */
-  }
-  
-  .logout-button {
-    background-color: #ff4d4d; /* Red logout button */
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-
-  /* Login Form Styling - Notepad Theme */
+/* Login Form Styling - Notepad Theme */
 .login-container {
     background: hsl(56, 100%, 88%); /* Light yellow notepad background */
     border: 2px solid #d4af37; /* Golden border */
@@ -435,7 +410,7 @@ input[type="checkbox"] {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color: black;
+    color:#c0392b;
 }
 
 .login-container div {
@@ -447,7 +422,7 @@ input[type="checkbox"] {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
-    color: #333;
+    color: #c0392b;
 }
 
 .login-container input[type="text"],
@@ -468,7 +443,7 @@ input[type="checkbox"] {
 }
 
 .login-container input[type="submit"] {
-    background-color: #ffcc00; /* Yellow button */
+    background-color: #c0392b; /* Yellow button */
     color: black;
     font-weight: bold;
     padding: 10px;
@@ -480,7 +455,7 @@ input[type="checkbox"] {
 }
 
 .login-container input[type="submit"]:hover {
-    background-color: #e6b800; /* Darker yellow */
+    background-color: #a93226;
 }
 
 .login-container p {
@@ -489,7 +464,7 @@ input[type="checkbox"] {
 }
 
 .login-container a {
-    color: black;
+    color: #c0392b;
     font-weight: bold;
     text-decoration: none;
 }
@@ -497,3 +472,40 @@ input[type="checkbox"] {
 .login-container a:hover {
     text-decoration: underline;
 }
+
+.fa-gears {
+    color: #c0392b;
+    font-size: 24px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.delete-button, .fa-arrow-left, .logout-button, .fa-plus {
+    background: #c0392b;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover, .fa-arrow-left:hover, .logout-button:hover, .fa-plus:hover {
+    background: #a93226;
+}
+
+.logout-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000; 
+  }
+

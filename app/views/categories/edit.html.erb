@@ -1,11 +1,10 @@
-<% content_for :title, "Editing category" %>
+<% content_for :title, "Edit category" %>
 
 <div class="edit-category">
 <span class="edit-task-title">  
+<i class="fa-solid fa-gears"></i>
 <h1>Edit Category</h1>
-  <%= link_to  categories_path, title: "Back to Categories" do %>  
-    <i class="fa-solid fa-arrow-left"></i>
-<% end %>
+  
 </span>
 
   <%= render "form", category: @category %>

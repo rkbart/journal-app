@@ -3,9 +3,7 @@
 <div class="edit-task">
 <span class="edit-task-title">  
 <h1>Edit Task in <%= @category.name %></h1>
-  <%= link_to  category_tasks_path(@category), title: "Back to Tasks" do %>  
-    <i class="fa-solid fa-arrow-left"></i>
-<% end %>
+  
 </span>
 
   <%= render "form", task: @task %>
