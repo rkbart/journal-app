@@ -6,13 +6,16 @@ default: &default
 
 development:
   <<: *default
-  database: my_app_development
+  database: journal_app_development
 
 test:
   <<: *default
-  database: my_app_test
+  database: journal_app_test
 
 production:
   <<: *default
-  database: my_app_production
-  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['PGDATABASE'] %>
+  host: <%= ENV['PGHOST'] %>
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+  port: 5432
