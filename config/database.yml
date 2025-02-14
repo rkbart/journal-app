@@ -6,11 +6,11 @@ default: &default
 
 development:
   <<: *default
-  database: journal_app_development
+  database: journal_app
 
 test:
   <<: *default
-  database: journal_app_test
+  database: journal_app
 
 production:
   <<: *default
