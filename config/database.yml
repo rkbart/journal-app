@@ -1,28 +1,21 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: journal_app
+  database: storage/development.sqlite3
 
 test:
   <<: *default
-  database: journal_app
+  database: storage/development.sqlite3
 
 production:
   <<: *default
-  adapter: postgresql
-  database: <%= ENV['PGDATABASE'] %>
-  host: <%= ENV['PGHOST'] %>
-  username: <%= ENV['PGUSER'] %>
-  password: <%= ENV['PGPASSWORD'] %>
-  pool: 5
-  port: 5432
-  encoding: unicode
+  
+  database: storage/development.sqlite3
+  
+  
 
-cable:
-  <<: *default
-  database: <%= ENV['PGDATABASE'] %>

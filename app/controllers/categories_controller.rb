@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   # GET /categories 
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   # GET /categories/1 
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    @category = current_user.categories.build
   end
 
   # GET /categories/1/edit
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
     if @category.save
       redirect_to categories_path, notice: 'Category created successfully.'
     else
@@ -40,51 +40,49 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1 
-  def destroy
-    category = Category.find(params[:id])
-    default_category = Category.find_by(name: "Uncategorized")
+   # DELETE /categories/1
+   def destroy
+    default_category = current_user.categories.find_by(name: "Uncategorized")
 
-  if default_category.nil?
-    flash[:alert] = "Default category not found. Cannot delete this category."
-    redirect_to categories_path and return
-  end
-
-  begin
-    # Reassign all tasks to the default category before deleting
-    category.tasks.update_all(category_id: default_category.id)
-
-    if category.destroy
-      flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
-    else
-      flash[:alert] = "Error deleting category."
+    if default_category.nil?
+      flash[:alert] = "Default category not found. Cannot delete this category."
+      redirect_to categories_path and return
     end
+
+    begin
+      # Reassign all tasks to the default category before deleting
+      @category.tasks.update_all(category_id: default_category.id)
+
+      if @category.destroy
+        flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
+      else
+        flash[:alert] = "Error deleting category."
+      end
 
     rescue ActiveRecord::InvalidForeignKey
       flash[:alert] = "Cannot delete category due to foreign key constraints. Ensure it is not referenced by other records."
     rescue StandardError => e
       flash[:alert] = "An error occurred: #{e.message}"
-  end
+    end
 
     redirect_to categories_path
   end
 
+  # GET /tasks/all
   def all_tasks
-    @tasks = Task.all.sort_by do |task|
-      if task.due_date.nil?
-        Date.today + 100.years  # Push tasks without a due date to the bottom
-      else
-        task.due_date
-      end
+    @tasks = current_user.tasks.sort_by do |task|
+      task.due_date || Date.today + 100.years
     end
   end
-  
+
   private
+
   def category_params
-    params.require(:category).permit(:name) # Correct syntax for strong params
+    params.require(:category).permit(:name)
   end
+
   def set_category
-    @category = Category.find(params[:id]) # Use params[:id] instead
+    @category = current_user.categories.find(params[:id])
   end
   
 end
