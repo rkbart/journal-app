@@ -14,8 +14,15 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
   database: <%= ENV['PGDATABASE'] %>
   host: <%= ENV['PGHOST'] %>
   username: <%= ENV['PGUSER'] %>
   password: <%= ENV['PGPASSWORD'] %>
+  pool: 5
   port: 5432
+  encoding: unicode
+
+cable:
+  <<: *default
+  database: <%= ENV['PGDATABASE'] %>
