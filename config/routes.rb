@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
 
   # Root route
-  root 'categories#index'
-  # root 'sessions#new'
+  # root 'categories#index'
+  root 'sessions#new'
 end

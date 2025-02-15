@@ -20,13 +20,13 @@ class CategoriesController < ApplicationController
   def edit
   end
 
-  # POST /categories 
+  # POST /create categories 
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
       redirect_to categories_path, notice: 'Category created successfully.'
     else
-      flash[:alert] = @category.errors.full_messages.join(", ")  # Make errors visible
+      flash[:alert] = @category.errors.full_messages.join(", ")  # make errors visible
       render :new
     end
   end
@@ -45,12 +45,12 @@ class CategoriesController < ApplicationController
     default_category = current_user.categories.find_by(name: "Uncategorized")
 
     if default_category.nil?
-      flash[:alert] = "Default category not found. Cannot delete this category."
+      flash[:alert] = "Uncategorized category not found. Cannot delete this category."
       redirect_to categories_path and return
     end
 
     begin
-      # Reassign all tasks to the default category before deleting
+      # reassign all tasks to the default category before deleting
       @category.tasks.update_all(category_id: default_category.id)
 
       if @category.destroy

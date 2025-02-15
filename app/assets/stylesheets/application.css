@@ -1,4 +1,4 @@
-@import "material-icons/iconfont/material-icons.css";
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,37 +6,32 @@
 }
 
 body {
-    /* font-family: 'Roboto', sans-serif; */
-    font-family: 'Courier New', Courier, monospace;
-    background: 
+    font-family: 'Poppins', 'Merriweather';
+    /* background: 
     linear-gradient(white 90%, rgba(0, 0, 0, 0.1) 10%) 0px 0px / 100% 30px, 
     linear-gradient(to right, rgba(255, 0, 0, 0.5) 2px, transparent 2px); 
-  background-size: 100% 30px, 100% 100%;
+  background-size: 100% 30px, 100% 100%; */
   background-color: white;
   }
   
 
 a {
-    color: black;
+    color: #333;
     text-decoration: none;
 }
   
 .tasks-index, .all-tasks {
-   /* background-color: rgb(142, 151, 255); */
-   padding: 1rem 2rem;
-   /* border-radius: 10px; */
-   /* height: 100vh ; */
+    padding: 1rem 2rem;
+   
 }
 
 .tasks-index p {
     text-align: center;
 }
-.material-icons{
-    color: #c0392b;
-}
+
 .fa-list-check, .fa-icons {
     font-size: 24px;
-    color: #c0392b;
+    color: #333;
 }
 
 .tasks-title {
@@ -54,7 +49,7 @@ a {
 }
 
 .tasks-title span {
-    color: black;
+    color: #333;
     font-size: 24px;
     margin-top: 5px;
     user-select: none;
@@ -62,24 +57,14 @@ a {
 
 .tasks-title span:hover {
     cursor: pointer;
-    /* transform: scale(.95); */
     color: hsl(0, 0%, 0%, 60%);
     transition: ease-in-out 0.2s;
 }
 
 .task-container, .category-container, .all-tasks-container {
-    /* background-color: rgb(230, 232, 255);
-    padding: 1rem;
-    border-radius: 10px;
-    margin-top: 5px;
-    display: flex;
-    align-items: flex-start; 
-    flex-direction: column;
-    text-align: left;
-    height: 100%; */
-    background: hsl(56, 100%, 88%); /* Light yellow notepad background */
-    border: 2px solid #d4af37; /* Golden border */
-    padding: 15px;
+    background: #fff; 
+    border: 2px solid #ccc; 
+    padding: 8px;
     margin: 20px auto;
     width: 80%;
     max-width: 600px;
@@ -89,14 +74,8 @@ a {
 }
 
 
-.task-container:hover, .category-container:hover {
-    background-color: hsl(56, 85%, 88%);
-}
-
-input[type="checkbox"] {
-    transform: scale(1.4); 
-    cursor: pointer;
-    margin-left: 5px;
+.category-container:hover {
+    background-color: hsl(0, 0%, 97%);
 }
 
 .tasks-description {
@@ -109,7 +88,7 @@ input[type="checkbox"] {
 }
 
 .tasks-description p {
-    color: black;
+    color: #333;
     user-select: none;
     font-size: 18px;
     font-weight: bold;
@@ -117,13 +96,13 @@ input[type="checkbox"] {
 }
 
 .tasks-description a {
-    color: black;
+    color: #333;
     text-decoration: none;
 }
 
 .tasks-description a:hover {
-    color: hsla(0, 0%, 0%, 0.65);
-    text-decoration: none;
+    color: hsl(0, 0%, 30%);
+    /* text-decoration: none; */
 }
 
 .tasks-due-date {
@@ -136,15 +115,15 @@ input[type="checkbox"] {
 }
 
 .calendar_today {
-    color: rgb(0, 0, 231);
+    color: hsl(240, 100%, 60%);
     user-select: none;
-    font-size: 16px;
+    /* font-size: 14px; */
 }
 .due-date {
     margin-top: 2px;    
     user-select: none;
     font-size: 14px;
-    color: red;
+    color: hsl(0, 100%, 60%);
 }
 
 .tasks-category {
@@ -301,7 +280,6 @@ input[type="checkbox"] {
 /* Categories */
 
 .categories-index {
-    /* background-color: rgb(142, 151, 255); */
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
@@ -319,7 +297,7 @@ input[type="checkbox"] {
 }
 
 .categories-title h1 {
-    color: #c0392b;
+    color: #333;
     user-select: none;
     text-align: center ;
 }
@@ -393,24 +371,24 @@ input[type="checkbox"] {
     margin-bottom: 1rem;
 }
 
-/* Login Form Styling - Notepad Theme */
+/* Login Form Styling - Sleek Minimalist Theme */
 .login-container {
-    background: hsl(56, 100%, 88%); /* Light yellow notepad background */
-    border: 2px solid #d4af37; /* Golden border */
+    background: #fff; /* White background for cleanliness */
+    border: 2px solid #ccc; /* Light gray border for subtle contrast */
     padding: 20px;
     margin: 50px auto;
     width: 80%;
     max-width: 400px;
     border-radius: 8px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Poppins', 'Merriweather', sans-serif;
 }
 
 .login-container h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color:#c0392b;
+    color: #333; /* Dark gray text for a modern look */
 }
 
 .login-container div {
@@ -422,31 +400,31 @@ input[type="checkbox"] {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
-    color: #c0392b;
+    color: #333; /* Matching label color with text */
 }
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     font-size: 16px;
-    border: 1px solid #d4af37; /* Golden border */
+    border: 1px solid #ccc; /* Light gray border */
     border-radius: 5px;
-    background-color: white;
+    background-color: #f9f9f9; /* Slightly off-white background for inputs */
     transition: border-color 0.3s ease-in-out;
 }
 
 .login-container input[type="text"]:focus,
 .login-container input[type="password"]:focus {
-    border-color: #b8860b; /* Darker golden on focus */
+    border-color: #333; /* Dark gray border on focus for contrast */
     outline: none;
 }
 
 .login-container input[type="submit"] {
-    background-color: #c0392b; /* Yellow button */
-    color: black;
+    background-color: #333; /* Dark gray button */
+    color: #fff; /* White text for contrast */
     font-weight: bold;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -455,23 +433,26 @@ input[type="checkbox"] {
 }
 
 .login-container input[type="submit"]:hover {
-    background-color: #a93226;
+    background-color: #444; /* Slightly lighter gray on hover */
 }
 
 .login-container p {
     text-align: center;
     margin-top: 10px;
+    color: #777; /* Lighter gray text for the paragraph */
 }
 
 .login-container a {
-    color: #c0392b;
+    color: #333; /* Dark gray links */
     font-weight: bold;
     text-decoration: none;
 }
 
 .login-container a:hover {
     text-decoration: underline;
+    color: #000; /* Slightly darker on hover for a clear call to action */
 }
+
 
 .fa-gears {
     color: #c0392b;

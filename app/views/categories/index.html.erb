@@ -14,9 +14,9 @@
     <div class="category-container">
       <span>
         <%= link_to "Display all tasks", all_tasks_categories_path %>
-        <span class="task-count" title="Total number of tasks">
+        <!--<span class="task-count" title="Total number of tasks">
           (<span style="color: red;"><%= Task.count %></span>)
-          </span>
+          </span>-->
          </span>
       </span>        
     </div>
@@ -26,14 +26,14 @@
           <%= link_to category.name, category_tasks_path(category) %> 
 
           <% unless category.name == "Uncategorized" %>
-        <%= link_to edit_category_path(category), title: "Edit this category" do %>
-          <i class="fa-solid fa-pen-to-square"></i>
-        <% end %>
+          <%= link_to edit_category_path(category), title: "Edit this category" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
       <% end %>
           <span class="task-count" title="Number of tasks in this category">
           (<span style="color: red;"><%= category.tasks.count %></span>)
           </span>
-         </span>
+        </span>
       </div>
     <% end %>
 
