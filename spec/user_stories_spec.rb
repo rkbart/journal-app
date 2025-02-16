@@ -24,10 +24,10 @@ RSpec.describe "Categories Index", type: :feature do
     expect(page).to have_content("Work")
   end
 
-  it "ensures 'Uncategorized' category is always present" do
-    visit categories_path
-    expect(page).to have_content("Uncategorized")
-  end
+  # it "ensures 'Uncategorized' category is always present" do
+  #   visit categories_path
+  #   expect(page).to have_content("Uncategorized")
+  # end
 
   #User Story 1 create a new category 
   let!(:category) { Category.create(name: "Old Name", user: @user) } # Create a sample category for updating

@@ -11,8 +11,8 @@
   <div id="tasks">
   <span class="buttons">
     <div class="new-category-button">
-      <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
-        <i class="fa-solid fa-plus"></i>
+      <%= link_to new_category_task_path(@category), title: "Add New Task", class: "new-category-button" do %>
+        + Add New Task
       <% end %>
     </div>
 
@@ -23,11 +23,17 @@
     <% @tasks.each do |task| %>
       <div id="<%= dom_id task %>" class="task-container <%= 'completed' if task.completed %>"> 
         
-        <div class="tasks-description">
-          <p>
-            <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
-          </p>
-        </div>
+      <div class="tasks-description">
+      <p>
+        <% if task.completed %>
+          <!-- Show plain text instead of link if the task is completed -->
+          <span title="Task is completed. Editing is disabled."><%= task.description %></span>
+        <% else %>
+          <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
+        <% end %>
+      </p>
+    </div>
+    
 
         <div class="tasks-due-date">
           <span class="material-symbols-outlined calendar_today">

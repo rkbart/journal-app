@@ -31,7 +31,7 @@
           <% end %>
       <% end %>
           <span class="task-count" title="Number of tasks in this category">
-          (<span style="color: red;"><%= category.tasks.count %></span>)
+          (<span style="color: #c0392b;"><%= category.tasks.count %></span>)
           </span>
         </span>
       </div>
@@ -39,8 +39,9 @@
 
   </div>
     <div class="new-category-button">
-      <%= link_to new_category_path, title: "Add new category" do %>
-        <i class="fa-solid fa-plus"></i>
+      <%= link_to new_category_path, title: "Add new category", class: "new-category-button" do %>
+        
+         + New Category
       <% end %>
     </div>
  
