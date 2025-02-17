@@ -8,8 +8,12 @@
 body {
     font-family: 'Poppins', 'Merriweather';
     background: linear-gradient(to bottom, #5D71BF, #778BDD);
-    height: 100vh;
+    background-attachment: fixed; /* Ensures the background stays in place */
+    background-size: cover; /* Ensures the gradient covers the entire height */
+    min-height: 100vh; /* Ensures it covers at least the viewport height */
+    margin: 0; /* Removes any margin that may affect layout */
 }
+
   
 
 a {

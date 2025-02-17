@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_category  # Ensure the category is set before running index
   before_action :require_login
+  
 
   def index
     @tasks = @category.tasks # Fetch tasks only for the selected category
