@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :require_login
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  
   # GET /categories 
   def index
     @categories = current_user.categories
@@ -34,7 +35,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: 'Category updated successfully.'
+      redirect_to categories_path, notice: "#{@category.name} updated successfully."
     else
       render :edit
     end

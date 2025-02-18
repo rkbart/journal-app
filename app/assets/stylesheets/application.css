@@ -538,3 +538,12 @@ a {
   .new-category-title {
     color: #fff;
   }
+
+  .completed-task {
+    background-color: #ccc; /* Light green for completed tasks */
+    text-decoration: line-through; /* Optionally strike through the text */
+}
+
+.completed-title {
+    margin-top: 1rem;
+}

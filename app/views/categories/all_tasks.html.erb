@@ -84,6 +84,32 @@
         <% else %>
             <p>No upcoming tasks.</p>
         <% end %>
-
     </div>
+
+    <!-- Completed Section -->
+<h2 class="completed-title">Completed Tasks</h2>
+<% completed_tasks = @tasks.select { |task| task.completed } %>
+<% if completed_tasks.any? %>
+    <% completed_tasks.each do |task| %>
+        <div class="all-tasks-container completed-task">
+            <div class="tasks-description">
+                <p>
+                    <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
+                </p>
+            </div>
+            <div class="tasks-due-date">
+                <span class="material-symbols-outlined calendar_today">calendar_today</span>
+                <span class="due-date"><%= task.due_date %></span>
+            </div>
+            <div class="tasks-category">
+                <strong>Category:</strong>
+                <%= task.category.name %>
+            </div> 
+        </div>
+    <% end %>
+<% else %>
+    <p>No completed tasks.</p>
+<% end %>
+
+
 </div>
