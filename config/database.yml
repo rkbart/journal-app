@@ -11,11 +11,19 @@ development:
   host: localhost
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: journal_app_test
-  username: rkbart          
+  username: rkbart
   password: password123
   host: localhost
+
+# test:
+#   <<: *default
+#   database: journal_app_test
+#   username: rkbart          
+#   password: password123
+#   host: localhost
 
 production:
   primary: &primary_production

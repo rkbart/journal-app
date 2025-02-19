@@ -2,144 +2,151 @@ require 'rails_helper'
 
 RSpec.describe "Categories Index", type: :feature do
   before(:each) do
-    # User Story 9 create a test user
-    @user = User.create!(username: "testuser", email: "test@example.com", password: "password")
+    @user = User.create!(username: "testuser", 
+                         email: "test@example.com", 
+                         password: "password")
     
-    # User Story 10 log in the test user
     visit login_path
+
     fill_in "email", with: "test@example.com"
     fill_in "password", with: "password"
     click_button "Login"
 
-    # Ensure "Uncategorized" category exists
-    @uncategorized = Category.find_or_create_by!(name: "Uncategorized", user: @user)
-    @category = Category.create!(name: "Work", user: @user)
-    @task = Task.create!(title: "Sample Task", description: "A test task", due_date: Date.today, completed: false, category: @category)
-  end
+    @category = Category.create!(name: "Work", 
+                                 user: @user)
 
-  #User Story 3 view all categories
-  it "displays the categories list" do
-    visit categories_path
-    expect(page).to have_content("Categories")
-    expect(page).to have_content("Work")
-  end
-
-  it "ensures 'Uncategorized' category is always present" do
-    visit categories_path
-    expect(page).to have_content("Uncategorized")
+    @task = Task.create!(title: "Sample Task", 
+                         description: "A test task", 
+                         due_date: Date.today, 
+                         completed: false, 
+                         category: @category)
   end
 
   #User Story 1 create a new category 
-  let!(:category) { Category.create(name: "Old Name", user: @user) } # Create a sample category for updating
-
   it "allows a user to create a new category" do
     visit new_category_path
-    fill_in "category_name", with: "Personal" # Ensure this matches the actual field name in your form
+    fill_in "category_name", with: "Personal" 
     click_button "Create Category"
 
     expect(page).to have_content("Category created successfully.")
-    # expect(Category.count).to eq(5) 
+    expect(page).to have_content("Personal")
   end
 
   #User Story #2 update a category
   it "allows a user to update a category" do
-    visit edit_category_path(category)
-
-    fill_in "category_name", with: "Updated Name" # Ensure this matches the actual field name
+    visit edit_category_path(@category)
+      # puts category.to_json
+    
+    fill_in "category_name", with: "Updated Work Name" 
     click_button "Update Category"
 
     expect(page).to have_content(" updated successfully.")
-    expect(page).to have_content("Updated Name")
+    expect(page).to have_content("Updated Work Name")
   end
 
-  it "shows an error when trying to create a category without a name" do
+  #User Story 3 view a category and all categories
+  it "displays a category" do
     visit categories_path
-  
-    #find the button by CSS class or href (since it has an icon, not text)
-    find("a[title='Add new category']").click
-  
-    click_button "Create Category" # Submitting without a name
+    click_link "Work" 
+    
+    expect(page).to have_content("A test task")
   end
   
+  it "displays the categories list" do
+    visit categories_path
 
-  it "updates the task count when a new task is added" do
-    visit categories_path
-    expect(page).to have_content("(1)") # Ensure task count updates
+    expect(page).to have_content("Categories")
+    expect(page).to have_content("Work")
   end
-  
-  
-  #User Story #4 create a task inside a category
+
+  #User Story #4 create a task for a specific category
   it "allows a user to create a new task within a category" do
-    # Navigate to the 'new task' form for the category
+    
     visit new_category_task_path(@category)
-  
-    # Fill in the form with task details
+    
     fill_in "task_description", with: "This is a task description"
-    fill_in "task_due_date", with: "2025-12-31" # Ensure field names match the form
+    fill_in "task_due_date", with: "2025-12-31" 
     click_button "Save Task"
   
-    # Expectations to verify the task was created successfully
-    expect(page).to have_content("Task created successfully.") # Ensure success message is shown
-    
+    expect(page).to have_content("Task created successfully.") 
   end
 
   # User Story #5: Update a task within a category
   it "allows a user to update a task within a category" do
-    # Navigate to the edit task form for an existing task
+    
     visit edit_category_task_path(@category, @task)
 
-    # Fill in the form with updated task details
     fill_in "task_description", with: "Updated task description"
-    fill_in "task_due_date", with: "2026-01-01" # Ensure field names match the form
+    fill_in "task_due_date", with: "2026-01-01" 
 
-    # Submit the form
     click_button "Save Task"
 
-    # Expectations to verify the task was updated successfully
-    expect(page).to have_content("Task updated successfully.") # Ensure success message is shown
-    expect(page).to have_content("2026-01-01")                 # Check if the new due date is displayed
+    expect(page).to have_content("Task updated successfully.") 
+    expect(page).to have_content("2026-01-01")                 
   end
 
-   #User Story 6 ensure task details can be viewed.
+   #User Story 6 view all tasks/a task.
    it "displays the all tasks list" do
     visit all_tasks_categories_path
 
     expect(page).to have_content("All Tasks")
 
-    expect(page).to have_content(@task.description) # Check for the task description
-    expect(page).to have_content(@task.due_date.to_s) # Ensure the due date is shown
-    expect(page).to have_content(@task.category.name) # Ensure the category is displayed
+    expect(page).to have_content(@task.description) 
+    expect(page).to have_content(@task.due_date.to_s) 
+    expect(page).to have_content(@task.category.name) 
   end
 
   # User Story 7: check if task can be deleted
   it "allows a user to delete a task" do
-    # Visit the category's tasks page
     visit edit_category_task_path(@category, @task)
-
-    # Ensure the task is displayed before deletion
-    expect(page).to have_content("A test task")
-
-    # Click the delete button
-        find("button.delete-button").click
     
-    # Verify the task is no longer displayed on the page
+    expect(page).to have_content("A test task")
+  
+    find("button.delete-button").click
+    
     expect(page).not_to have_content("A test task")
-    expect(page).to have_content("Task deleted successfully") # Adjust the text if your flash message differs
+    expect(page).to have_content("Task deleted successfully") 
   end
 
   #User Story 8 check if today’s tasks can be filtered
-
   it "displays only today's tasks in the 'Due Today' section" do
-    # Create tasks with different due dates
-    @task_today = Task.create!(description: "Task due today", due_date: Date.today, category: @category)
+    @task_today = Task.create!(description: "Task due today", 
+                               due_date: Date.today, 
+                               category: @category)
     
-    # Visit the "All Tasks" page
     visit all_tasks_categories_path
 
-    # Check for the "Due Today" section and ensure it only contains the task due today
     expect(page).to have_content("Due Today")
     expect(page).to have_content("Task due today")
-    
+  end
+  
+  # User Story 9 create a test user
+  it "allows a user to sign up successfully" do
+    visit new_user_path
+
+    fill_in "Email", with: "newuser@example.com"
+    fill_in "password", with: "password"
+    fill_in "user[password_confirmation]", with: "password"
+
+    click_button "Sign Up"
+
+    expect(page).to have_content("Successfully signed up!")
+    expect(page).to have_content("Logout")
   end
 
+  # User Story 10 log in the test user
+  it "logs in the created user successfully" do
+    visit logout_path if defined?(logout_path)
+  
+    visit login_path
+
+    fill_in "email", with: "test@example.com"
+    fill_in "password", with: "password"
+    click_button "Login"
+  
+    expect(page).to have_content("Logged in successfully!")
+    expect(page).to have_content("Logout")
+  end
+  
+  
 end
