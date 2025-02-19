@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
+ 
   def new
     if session[:user_id] # Check if user is logged in
-      redirect_to categories_path # Redirect to categories index
+      redirect_to categories_path 
     end
   end
   
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "Logged in successfully!"
         redirect_to root_path
       else
-        flash[:alert] = "Invalid email or password"
+        flash[:notice] = "Invalid email or password"
         render :new
       end
     end
@@ -23,5 +24,8 @@ class SessionsController < ApplicationController
       flash[:notice] = "Logged out successfully!"
       redirect_to login_path
     end
-  end
+
+ 
+
+end
   

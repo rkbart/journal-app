@@ -547,3 +547,54 @@ a {
 .completed-title {
     margin-top: 1rem;
 }
+
+.notice {
+    color: #fff; 
+    font-style: italic; 
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.toggle-password-button, .toggle-password-confirmation-button {
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    color: #333;
+  }
+  
+  .toggle-password-button:hover, .toggle-password-confirmation-button:hover {
+    background-color: #ddd; 
+  }  
+
+  /* Flex container for the input and button */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-wrapper .form-input {
+    flex: 1;
+    padding-right: 70px; /* Ensures enough space for the button */
+}
+
+.password-wrapper .toggle-password-button, .toggle-password-confirmation-button {
+    position: absolute;
+    right: 10px; /* Positioned inside the input box */
+    padding: 0.5rem;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.password-wrapper .toggle-password-button:hover {
+    background-color: #ddd;
+}

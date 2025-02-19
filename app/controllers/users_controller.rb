@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to root_path, notice: "Successfully signed up!"
       else
+        flash[:notice] = "Invalid credentials"
         render :new  # Keeps the form and displays errors instead of redirecting
       end
     end

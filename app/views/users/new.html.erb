@@ -1,3 +1,4 @@
+<p class="notice"><%= flash[:notice] %></p>
 <div class="login-container">
   <h1>Sign Up</h1>
 
@@ -7,14 +8,20 @@
       <%= form.text_field :email, class: "form-input" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group password-container">
       <%= form.label :password, class: "form-label" %>
-      <%= form.password_field :password, class: "form-input" %>
+      <div class="password-wrapper">
+        <%= form.password_field :password, class: "form-input", id: "password" %>
+        <button type="button" id="togglePassword" class="toggle-password-button">Show</button>
+      </div>
     </div>
-
-    <div class="form-group">
+    
+    <div class="form-group password-container">
       <%= form.label :password_confirmation,"Confirm password", class: "form-label" %>
-      <%= form.password_field :password_confirmation, class: "form-input" %>
+      <div class="password-wrapper">
+        <%= form.password_field :password_confirmation, class: "form-input", id: "password-confirmation" %>
+        <button type="button" id="togglePasswordConfirmation" class="toggle-password-confirmation-button">Show</button>
+      </div>
     </div>
 
     <div class="form-actions">
@@ -23,3 +30,34 @@
   <% end %>
   <p>Already have an account? <%= link_to "Log in", login_path %></p>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const togglePasswordButton = document.getElementById("togglePassword");
+  const passwordField = document.getElementById("password");
+  const togglePasswordConfirmationButton = document.getElementById("togglePasswordConfirmation");
+  const passwordConfirmationField = document.getElementById("password-confirmation");
+
+  togglePasswordButton.addEventListener("click", function() {
+    // Toggle the password field type
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      togglePasswordButton.textContent = "Hide"; // Change button text
+    } else {
+      passwordField.type = "password";
+      togglePasswordButton.textContent = "Show"; // Change button text
+    }
+  });
+  togglePasswordConfirmationButton.addEventListener("click", function() {
+    
+  if (passwordConfirmationField.type === "password") {
+    passwordConfirmationField.type = "text";
+    togglePasswordConfirmationButton.textContent = "Hide";
+  } else {
+    passwordConfirmationField.type = "password";
+    togglePasswordConfirmationButton.textContent = "Show";
+  }
+  
+  });
+});
+</script>

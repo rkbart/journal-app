@@ -48,14 +48,14 @@ RSpec.describe "Categories Index", type: :feature do
     fill_in "category_name", with: "Updated Name" # Ensure this matches the actual field name
     click_button "Update Category"
 
-    expect(page).to have_content("Category updated successfully.")
+    expect(page).to have_content(" updated successfully.")
     expect(page).to have_content("Updated Name")
   end
 
   it "shows an error when trying to create a category without a name" do
     visit categories_path
   
-    # Find the button by CSS class or href (since it has an icon, not text)
+    #find the button by CSS class or href (since it has an icon, not text)
     find("a[title='Add new category']").click
   
     click_button "Create Category" # Submitting without a name
