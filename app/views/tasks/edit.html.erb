@@ -1,12 +1,11 @@
 <% content_for :title, "Editing task" %>
 
 <div class="edit-task">
-<span class="edit-task-title">  
-<h1>Edit Task in <%= @category.name %></h1>
   
-</span>
+  <span class="edit-task-title">  
+    <h1>Edit Task in <%= @category.name %></h1>
+  </span>
 
   <%= render "form", task: @task %>
 
-  
-</div>
+  </div>

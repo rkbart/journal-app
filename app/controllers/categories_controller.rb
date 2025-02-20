@@ -6,10 +6,6 @@ class CategoriesController < ApplicationController
     @categories = current_user.categories
   end
    
-  def show
-    @tasks = @category.tasks
-  end
-  
   def new
     @category = current_user.categories.build
   end
@@ -36,33 +32,17 @@ class CategoriesController < ApplicationController
 
   def destroy
     default_category = current_user.categories.find_by(name: "Uncategorized")
-
-    if default_category.nil?
-      flash[:alert] = "Uncategorized category not found. Cannot delete this category."
-      redirect_to categories_path and return
-    end
-
-    begin
-      @category.tasks.update_all(category_id: default_category.id)
-
-      if @category.destroy
-        flash[:notice] = "Category deleted and tasks reassigned to 'Uncategorized'."
-      else
-        flash[:alert] = "Error deleting category."
-      end
-
-    rescue ActiveRecord::InvalidForeignKey
-      flash[:alert] = "Cannot delete category due to foreign key constraints. Ensure it is not referenced by other records."
-    rescue StandardError => e
-      flash[:alert] = "An error occurred: #{e.message}"
-    end
-
+    @category.tasks.update_all(category_id: default_category.id)
+    
+    @category.destroy
+    
     redirect_to categories_path
   end
 
   def all_tasks
     @tasks = current_user.tasks.sort_by do |task|
-      task.due_date || Date.today + 100.years
+      task.due_date 
+      # || Date.today + 100.years
   end
   
 end

@@ -15,7 +15,8 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params) 
     
     if @task.save
-      redirect_to category_tasks_path(@category), notice: 'Task created successfully.'
+      redirect_to category_tasks_path(@category), 
+      notice: 'Task created successfully.'
     else
       flash[:alert] = @task.errors.full_messages.join(", ")
       render :new
@@ -29,8 +30,10 @@ class TasksController < ApplicationController
   def update
     @task = @category.tasks.find(params[:id]) 
     if @task.update(task_params) 
-      redirect_to category_tasks_path(@category), notice: 'Task updated successfully.'
+      redirect_to category_tasks_path(@category), 
+      notice: 'Task updated successfully.'
     else
+      flash[:alert] = @task.errors.full_messages.join(", ")
       render :edit 
     end
   end
@@ -38,13 +41,14 @@ class TasksController < ApplicationController
   def destroy
     @task = @category.tasks.find(params[:id]) 
     @task.destroy
-    redirect_to category_tasks_path(@category), notice: 'Task deleted successfully.'
+    redirect_to category_tasks_path(@category), 
+    notice: 'Task deleted successfully.'
   end
 
   def toggle_complete
     @task = Task.find(params[:id])
     @task.update(completed: !@task.completed) 
-    redirect_to category_tasks_path(@task.category), notice: "Task updated successfully."
+    redirect_to category_tasks_path(@task.category) 
   end
   
   private

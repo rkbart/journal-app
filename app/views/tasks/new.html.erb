@@ -1,13 +1,10 @@
-<% content_for :title, "New task" %>
-<div class = "new-task">
-<span class="edit-task-title">  
-<h1>New Task in <%= @category.name %></h1>
-  
-</span>
-  
+<% content_for :title, "Create a new task" %>
 
+<div class = "new-task">
+  <span class="edit-task-title">  
+    <h1>New Task in <%= @category.name %></h1>
+  </span>
+  
   <%= render "form", task: @task %>
 
-
-  
 </div>

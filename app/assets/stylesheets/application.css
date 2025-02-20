@@ -502,6 +502,14 @@ a {
     top: 10px;
     right: 10px;
     z-index: 1000; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .user-email {
+    font-size: 18px;
+    color: #fff;
   }
 
   .completed {

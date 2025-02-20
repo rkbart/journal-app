@@ -1,115 +1,90 @@
+<% content_for :title, "Display all tasks" %>
 <div class="all-tasks">
-    <div class="tasks-title">
-        <i class="fa-solid fa-list-check"></i>
-        <h1>All Tasks</h1> 
-      
-        <%= link_to categories_path, title: "Back to Categories" do %>  
-            <i class="fa-solid fa-arrow-left"></i>
-        <% end %>
-    </div>
-    
-    <div id="all-tasks-container">
-        
-        <!-- Due Today Section -->
-        <h2 class="due-today-title">Due Today</h2>
-        <% due_today_tasks = @tasks.select { |task| task.due_date == Date.today } %>
-        <% if due_today_tasks.any? %>
-            <% due_today_tasks.each do |task| %>
-                <div class="all-tasks-container"> 
-                    <div class="tasks-description">
-                        <p>
-                            <%= link_to task.description, edit_category_task_path(task.category, task) ,title: "Edit this task" %>
-                        </p>
-                    </div>
-                    <div class="tasks-due-date">
-                        <span class="material-symbols-outlined calendar_today">calendar_today</span>
-                        <span class="due-date"><%= task.due_date %></span>
-                    </div>
-                    <div class="tasks-category">
-                        <strong>Category:</strong>
-                        <%= task.category.name %>
-                    </div> 
-                </div>
-            <% end %>
-        <% else %>
-            <p>No tasks due today.</p>
-        <% end %>
+  <div class="tasks-title">
+    <i class="fa-solid fa-list-check"></i>
+    <h1>All Tasks</h1>
 
-        <!-- Overdue Section -->
-        <h2 class="overdue-title">Overdue</h2>
-        <% overdue_tasks = @tasks.select { |task| task.due_date && task.due_date < Date.today } %>
-        <% if overdue_tasks.any? %>
-            <% overdue_tasks.each do |task| %>
-                <div class="all-tasks-container overdue-task"> 
-                    <div class="tasks-description">
-                        <p>
-                            <%= link_to task.description, edit_category_task_path(task.category, task) %>
-                        </p>
-                    </div>
-                    <div class="tasks-due-date">
-                        <span class="material-symbols-outlined calendar_today">calendar_today</span>
-                        <span class="due-date"><%= task.due_date %></span>
-                    </div>
-                    <div class="tasks-category">
-                        <strong>Category:</strong>
-                        <%= task.category.name %>
-                    </div> 
-                </div>
-            <% end %>
-        <% else %>
-            <p>No overdue tasks.</p>
-        <% end %>
-
-        <!-- Upcoming Section -->
-        <h2 class="upcoming-title">Upcoming</h2>
-        <% upcoming_tasks = @tasks.select { |task| task.due_date && task.due_date > Date.today } %>
-        <% if upcoming_tasks.any? %>
-            <% upcoming_tasks.each do |task| %>
-                <div class="all-tasks-container upcoming-task"> 
-                    <div class="tasks-description">
-                        <p>
-                            <%= link_to task.description, edit_category_task_path(task.category, task) %>
-                        </p>
-                    </div>
-                    <div class="tasks-due-date">
-                        <span class="material-symbols-outlined calendar_today">calendar_today</span>
-                        <span class="due-date"><%= task.due_date %></span>
-                    </div>
-                    <div class="tasks-category">
-                        <strong>Category:</strong>
-                        <%= task.category.name %>
-                    </div> 
-                </div>
-            <% end %>
-        <% else %>
-            <p>No upcoming tasks.</p>
-        <% end %>
-    </div>
-
-    <!-- Completed Section -->
-<h2 class="completed-title">Completed Tasks</h2>
-<% completed_tasks = @tasks.select { |task| task.completed } %>
-<% if completed_tasks.any? %>
-    <% completed_tasks.each do |task| %>
-        <div class="all-tasks-container completed-task">
-            <div class="tasks-description">
-                <p>
-                    <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
-                </p>
-            </div>
-            <div class="tasks-due-date">
-                <span class="material-symbols-outlined calendar_today">calendar_today</span>
-                <span class="due-date"><%= task.due_date %></span>
-            </div>
-            <div class="tasks-category">
-                <strong>Category:</strong>
-                <%= task.category.name %>
-            </div> 
-        </div>
+    <%= link_to categories_path, title: "Back to Categories" do %>
+      <i class="fa-solid fa-arrow-left"></i>
     <% end %>
-<% else %>
-    <p>No completed tasks.</p>
-<% end %>
+  </div>
 
+  <div id="all-tasks-container">
 
+    <!-- Due Today Section -->
+    <h2 class="due-today-title">Due Today</h2>
+    <% due_today_tasks = @tasks.select { |task| task.due_date == Date.today } %>
+    <% if due_today_tasks.any? %>
+      <% due_today_tasks.each do |task| %>
+        <div class="all-tasks-container">
+          <div class="tasks-description">
+            <p>
+              <%= link_to task.description, edit_category_task_path(task.category, task), title: "Edit this task" %>
+            </p>
+          </div>
+          <div class="tasks-due-date">
+            <span class="material-symbols-outlined calendar_today">calendar_today</span>
+            <span class="due-date"><%= task.due_date %></span>
+          </div>
+          <div class="tasks-category">
+            <strong>Category:</strong>
+            <%= task.category.name %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No tasks due today.</p>
+    <% end %>
+
+    <!-- Overdue Section -->
+    <h2 class="overdue-title">Overdue</h2>
+    <% overdue_tasks = @tasks.select { |task| task.due_date && task.due_date < Date.today } %>
+    <% if overdue_tasks.any? %>
+      <% overdue_tasks.each do |task| %>
+        <div class="all-tasks-container overdue-task">
+          <div class="tasks-description">
+            <p>
+              <%= link_to task.description, edit_category_task_path(task.category, task) %>
+            </p>
+          </div>
+          <div class="tasks-due-date">
+            <span class="material-symbols-outlined calendar_today">calendar_today</span>
+            <span class="due-date"><%= task.due_date %></span>
+          </div>
+          <div class="tasks-category">
+            <strong>Category:</strong>
+            <%= task.category.name %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No overdue tasks.</p>
+    <% end %>
+
+    <!-- Upcoming Section -->
+    <h2 class="upcoming-title">Upcoming</h2>
+    <% upcoming_tasks = @tasks.select { |task| task.due_date && task.due_date > Date.today } %>
+    <% if upcoming_tasks.any? %>
+      <% upcoming_tasks.each do |task| %>
+        <div class="all-tasks-container upcoming-task">
+          <div class="tasks-description">
+            <p>
+              <%= link_to task.description, edit_category_task_path(task.category, task) %>
+            </p>
+          </div>
+          <div class="tasks-due-date">
+            <span class="material-symbols-outlined calendar_today">calendar_today</span>
+            <span class="due-date"><%= task.due_date %></span>
+          </div>
+          <div class="tasks-category">
+            <strong>Category:</strong>
+            <%= task.category.name %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No upcoming tasks.</p>
+    <% end %>
+
+  </div>
 </div>

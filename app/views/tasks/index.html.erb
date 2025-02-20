@@ -1,7 +1,7 @@
+<% content_for :title, "Tasks" %> 
+
 <div class="tasks-index">
   <p style="color: #fff; font-style: italic;"><%= notice %></p>
-
-  <% content_for :title, "Tasks" %> 
 
   <div class="tasks-title">
     <i class="fa-solid fa-list-check"></i>
@@ -10,6 +10,7 @@
 
   <div id="tasks">
     <span class="buttons">
+      
       <div class="new-category-button">
         <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
           <span class="new-category-title">+ New Task</span>
@@ -19,10 +20,11 @@
       <%= link_to categories_path, title: "Back to Categories" do %>  
         <i class="fa-solid fa-arrow-left"></i>
       <% end %>
-  </span>
     
+    </span>
+
     <% @tasks.each do |task| %>
-      <div id="<%= dom_id task %>" class="task-container <%= 'completed' if task.completed %>"> 
+      <div id="<%= dom_id task %>" class="task-container <%= 'completed' if task.completed %>">
         
         <div class="tasks-description">
           <p>
@@ -31,15 +33,12 @@
         </div>
 
         <div class="tasks-due-date">
-          <span class="material-symbols-outlined calendar_today">
-            calendar_today
-          </span>
+          <span class="material-symbols-outlined calendar_today">calendar_today</span>
           <span class="due-date">
             <%= content_tag :span, task.due_date, title: "Task is due on #{task.due_date}" %>
           </span>
         </div>
 
-        <!-- Toggle Complete Button -->
         <div class="task-status">
           <%= button_to (task.completed ? "Undo" : "Mark as Done"), 
               toggle_complete_category_task_path(@category, task),
@@ -49,6 +48,4 @@
       </div>
     <% end %>
   </div>
-
-  
 </div>
