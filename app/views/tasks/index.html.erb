@@ -9,17 +9,18 @@
   </div>
 
   <div id="tasks">
-  <span class="buttons">
-    <div class="new-category-button">
-      <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
-        <span class="new-category-title">+ New Task</span>
-      <% end %>
-    </div>
+    <span class="buttons">
+      <div class="new-category-button">
+        <%= link_to new_category_task_path(@category), title: "Add New Task" do %>
+          <span class="new-category-title">+ New Task</span>
+        <% end %>
+      </div>
 
-    <%= link_to categories_path, title: "Back to Categories" do %>  
-      <i class="fa-solid fa-arrow-left"></i>
-    <% end %>
+      <%= link_to categories_path, title: "Back to Categories" do %>  
+        <i class="fa-solid fa-arrow-left"></i>
+      <% end %>
   </span>
+    
     <% @tasks.each do |task| %>
       <div id="<%= dom_id task %>" class="task-container <%= 'completed' if task.completed %>"> 
         
