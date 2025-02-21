@@ -33,7 +33,7 @@ class TasksController < ApplicationController
       redirect_to category_tasks_path(@category), 
       notice: 'Task updated successfully.'
     else
-      flash[:alert] = @task.errors.full_messages.join(", ")
+      flash[:alert] = @task.errors.full_messages
       render :edit 
     end
   end

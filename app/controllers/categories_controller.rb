@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       redirect_to category_tasks_path(@category), 
       notice: 'Category created successfully.'
     else
-      flash[:alert] = @category.errors.full_messages.join(", ") 
+      flash[:alert] = @category.errors.full_messages 
       render :new
     end
   end
@@ -42,10 +42,8 @@ class CategoriesController < ApplicationController
   def all_tasks
     @tasks = current_user.tasks.sort_by do |task|
       task.due_date 
-      # || Date.today + 100.years
+    end
   end
-  
-end
 
 private
 
