@@ -64,6 +64,6 @@ end
 
 gem "react-rails", "~> 3.2"
 
-gem "rspec-rails", "~> 7.1", :groups => [:development, :test]
+gem "rspec-rails", "~> 8.0", :groups => [:development, :test]
 
 gem "pg", "~> 1.1"
